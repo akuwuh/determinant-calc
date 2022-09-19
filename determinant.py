@@ -42,6 +42,27 @@ print("Your Matrix: \n")
 for k in range(n):
     print(lol[k])
     print("\n")
+    
+def minor(array, i, j):
+
+    m = [None] * (n -1)
+    r = [None] * (n -1)
+
+    for r in range(n):
+        if r == 0:
+            continue
+        else:
+            for c in range(n):
+                if c == i:
+                    continue
+
+                r.append(array[r][c])
+            m.append(r)
+    
+    return m
+
+print("Minor: \n")
+print(minor(lol, 0))
 
 
 
