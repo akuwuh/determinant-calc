@@ -43,7 +43,7 @@ for k in range(n):
     print(lol[k])
     print("\n")
     
-def minor(array, i, j):
+def minor(array, i):
 
     m = [None] * (n -1)
     r = [None] * (n -1)
