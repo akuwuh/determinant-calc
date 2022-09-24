@@ -1,5 +1,10 @@
-from tkinter import N
-from colorama import init, Fore
+import os
+from colorama import init,Fore
+import time
+from sys import exit
+init()
+
+os.system("cls" or "clear")
 
 bigArray = []
 CURSOR_UP_ONE = '\x1b[1A'
@@ -48,7 +53,11 @@ while i < n:
             bigArray.append(entry)
             j += 1
         except ValueError:
-            print("pls enter int")
+            time.sleep(0.3)
+            print(Fore.RED + "PlEASE ENTER AN INTEGER!")
+            time.sleep(0.75)
+            print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+            print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
     i += 1
 
 len = n*n
@@ -58,18 +67,30 @@ lol = [None] * n
 for i in range(n):
     lol[i] = bigArray[((i+1)*n) - n:(i+1)*n]
 
+time.sleep(0.7)
+os.system("cls" or "clear")
+
+time.sleep(0.75)
 
 print("Your Matrix: \n")
 
+time.sleep(1)
+
 for k in range(n):
     print(lol[k])
+    time.sleep(0.4)
     print("\n")
 
 determinant = det(lol, n)
+time.sleep(1.2)
 
-print("Determinant: \n")
+print("Determinant: " + str(determinant))
 
-print(determinant)
+print("\n")
+
+time.sleep(1)
+exitIN = input(Fore.MAGENTA + "[-] "  + Fore.WHITE + "Press Enter To Exit")
+exit()
 
 
             
