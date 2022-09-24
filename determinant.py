@@ -1,8 +1,27 @@
+from tkinter import N
 from colorama import init, Fore
 
 bigArray = []
 CURSOR_UP_ONE = '\x1b[1A'
 ERASE_LINE = '\x1b[2K'
+
+#returns the determinant of matrix m using first row expansion
+def minor(m, i, j):
+    r_new = m[:i] + m[i+1:]
+    m_new = [row[:j] + row[j+1:] for row in r_new] 
+    return m_new
+
+#returns the determinant of arr with size n
+def det(arr, n): #arr is the matrix and n is the size
+    if n == 1: return arr[0][0] #returns the number inside of the matrix
+    if n == 2: return arr[0][0] * arr[1][1] - arr[1][0] * arr[0][1]
+    total = 0
+    if n > 2:
+        for i in range(0,n):
+            m = minor(arr, 0, i)
+            total += ((pow(-1, i) * arr[0][i]) * det(m, n-1))
+    return total
+
 
 #prompting for size
 print(Fore.MAGENTA + "[-] " + Fore.WHITE + "What size?")
@@ -34,36 +53,30 @@ while i < n:
 
 len = n*n
 lol = [None] * n
+
+#sorting into list of list based on size n
 for i in range(n):
     lol[i] = bigArray[((i+1)*n) - n:(i+1)*n]
 
 
 print("Your Matrix: \n")
+
 for k in range(n):
     print(lol[k])
     print("\n")
-    
-def minor(array, i):
 
-    m = [None] * (n -1)
-    r = [None] * (n -1)
+determinant = det(lol, n)
 
-    for r in range(n):
-        if r == 0:
-            continue
-        else:
-            for c in range(n):
-                if c == i:
-                    continue
+print("Determinant: \n")
 
-                r.append(array[r][c])
-            m.append(r)
-    
-    return m
+print(determinant)
 
-print("Minor: \n")
-print(minor(lol, 0))
 
+            
+
+
+
+        
 
 
 
